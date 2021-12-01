@@ -3,18 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "npm run test",
-      "eslint --fix",
-      "git add"
-    ]
-  },
+
   "scripts": {
     "build": "npx tsc",
     "database:up": "docker-compose up -d",
@@ -24,7 +13,13 @@
     "migrate": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:latest",
     "migrate:list": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:list",
     "migrate:roll": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:rollback",
+    "lint": "eslint src",
     "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "author": "",
   "license": "ISC",
