@@ -22,7 +22,7 @@
     "test:watchIntegration": "npm run test:watch -- --testMatch \"**/?*.test.ts?(x)\"",
     "prepare": "husky install"
   },
-  "author": "",
+  "author": "Matheus Mol",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.12.10",
