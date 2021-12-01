@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx}": [
       "npm run test"
-    ]
+    ],
+    "*.js": "eslint --cache --fix"
   },
   "scripts": {
     "build": "npx tsc",
