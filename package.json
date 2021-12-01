@@ -5,8 +5,15 @@
   "main": "index.js",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "npm run test",
+      "eslint --fix",
+      "git add"
+    ]
   },
   "scripts": {
     "build": "npx tsc",
@@ -30,7 +37,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.4.2",
-    "lint-staged": "^12.1.2",
     "prettier": "^2.5.0",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",

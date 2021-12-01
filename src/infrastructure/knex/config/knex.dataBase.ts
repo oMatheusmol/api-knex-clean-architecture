@@ -1,4 +1,4 @@
 import knexfile from '../../../../knexfile';
-import knex from 'knex';
+import knex from "knex"
 
-export default knex(knexfile);
+export default knex(knexfile)
