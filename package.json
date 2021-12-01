@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-
   "scripts": {
     "build": "npx tsc",
     "database:up": "docker-compose up -d",
@@ -14,7 +13,8 @@
     "migrate:list": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:list",
     "migrate:roll": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:rollback",
     "lint": "eslint src",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
     "jest": "^27.4.2",
     "prettier": "^2.5.0",
     "ts-jest": "^27.0.7",
@@ -35,10 +36,5 @@
   "dependencies": {
     "knex": "^0.95.14",
     "mysql2": "^2.3.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
   }
 }
