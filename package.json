@@ -36,5 +36,10 @@
   "dependencies": {
     "knex": "^0.95.14",
     "mysql2": "^2.3.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint && test"
+    }
   }
 }
