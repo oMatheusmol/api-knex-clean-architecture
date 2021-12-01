@@ -2,7 +2,6 @@ module.exports = {
   '*.ts': [
     'npm run lint',
     'git add',
-    'npm run test',
-    'git push',
+    // 'npm run test',
   ]
 }
