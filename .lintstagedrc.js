@@ -3,5 +3,6 @@ module.exports = {
     'npm run lint',
     'git add',
     'npm run test',
+    'git push',
   ]
 }
