@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "npm run test"
+    ]
+  },
   "scripts": {
     "build": "npx tsc",
     "database:up": "docker-compose up -d",
@@ -13,7 +23,7 @@
     "migrate:list": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:list",
     "migrate:roll": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:rollback",
     "lint": "eslint src",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "prepare": "husky install"
   },
   "author": "",
@@ -36,10 +46,5 @@
   "dependencies": {
     "knex": "^0.95.14",
     "mysql2": "^2.3.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test"
-    }
   }
 }
