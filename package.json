@@ -8,12 +8,16 @@
     "database:up": "docker-compose up -d",
     "database:down": "docker-compose down",
     "docker:dropAll": "docker stop $(docker ps -a -q) && docker system prune -f",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrate:make": "knex --knexfile src/infrastructure/knex/knexfile.ts migrate:make",
+    "migrate": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:latest",
+    "migrate:list": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:list",
+    "migrate:roll": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:rollback"
   },
-  "keywords": [],
+
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/knex": "^0.16.1",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "eslint": "^8.3.0",

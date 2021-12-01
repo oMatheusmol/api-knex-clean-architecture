@@ -1,6 +1,6 @@
 // Update with your config settings.
 
-module.exports = {
+export default {
   client: 'mysql2',
   connection: {
     database: 'base_de_dados',
