@@ -23,7 +23,8 @@
     "migrate:list": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:list",
     "migrate:roll": "knex --knexfile ./src/infrastructure/knex/knexfile.ts migrate:rollback",
     "lint": "eslint src",
-    "test": "jest --detectOpenHandles",
+    "test": "jest --bail --runInBand --silent --setupFiles",
+    "test:lintStaged": "npm test -- --findRelatedTests",
     "prepare": "husky install"
   },
   "author": "",
