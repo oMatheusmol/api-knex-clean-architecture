@@ -1,4 +1,6 @@
-import knexfile from '../../../../knexfile';
-import knex from 'knex';
+import knexConnection from '../../../../knexfile';
+import { knex, Knex } from 'knex';
 
-export default knex(knexfile);
+type db = Knex;
+// environment can be configured in .env file
+export default knex(knexConnection) as db;

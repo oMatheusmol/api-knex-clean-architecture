@@ -1,19 +1,13 @@
 import express from 'express';
-import knex from '../knex/config/knex.dataBase';
+import db from '../knex/config/knex.dataBase';
 import { setupApp } from './setup/setup-app';
+import { setupRoutes } from './setup/setup-routes';
 
-export const server = express();
+export const app = express();
 
-setupApp(server);
+setupApp(app);
+setupRoutes(app);
 
-server.route('/').get((req, res) => {
-  knex('users')
-    .select('*')
-    .then(users => {
-      return res.send(users);
-    });
-});
-
-server.listen(3000, () => {
+app.listen(3000, () => {
   console.log('Listening on port 3000');
 });
