@@ -2,9 +2,9 @@ import { Router } from 'express';
 
 import { expressRouteAdapter } from '../adapters/express-route-adapter';
 
-import findUserByIdControllerFactory from '../../../main/factories/controllers/user/find-user-by-id-controller-factory';
+import findAllUsersControllerFactory from '../../../main/factories/controllers/user/find-all-users-controller-factory';
 
-const { findAllUsersController } = findUserByIdControllerFactory();
+const { findAllUsersController } = findAllUsersControllerFactory();
 
 export const userRoutes = Router();
 

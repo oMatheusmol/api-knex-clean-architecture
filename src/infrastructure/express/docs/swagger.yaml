@@ -1,0 +1,68 @@
+---
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: 'API Knex'
+  contact: {}
+host: localhost:3000
+basePath: /
+tags:
+  - name: 'Users'
+    description: ''
+schemes:
+  - 'https'
+  - 'http'
+consumes:
+  - 'application/json'
+produces:
+  - 'application/json'
+paths:
+  /users:
+      get:
+        tags:
+          - 'Users'
+        summary: 'Get Users'
+        produces:
+          - 'application/json'
+        responses:
+          '200':
+            description: ''
+            headers: {}
+            schema:
+              $ref: '#/definitions/getUsersResponse'
+          '400':
+            description: 'Bad Request'
+            schema:
+              $ref: '#/definitions/errorResponse'
+        deprecated: false
+
+definitions:
+  errorResponse:
+    type: object
+    properties:
+      message:
+        type: string
+
+  successResponseAuth:
+    type: 'object'
+    properties:
+      token:
+        type: 'string'
+  getUsersResponse:
+    type: 'object'
+    properties:
+      data:
+        type: 'array'
+        items:
+          $ref: '#/definitions/user'
+  user:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+      name:
+        type: 'string'
+      email:
+        type: 'string'
+      password:
+        type: 'string'
