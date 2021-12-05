@@ -4,7 +4,7 @@ info:
   version: '1.0.0'
   title: 'API Knex'
   contact: {}
-host: localhost:3000
+host: localhost:3000/api/v1
 basePath: /
 tags:
   - name: 'Users'
@@ -24,6 +24,30 @@ paths:
         summary: 'Get Users'
         produces:
           - 'application/json'
+        responses:
+          '200':
+            description: ''
+            headers: {}
+            schema:
+              $ref: '#/definitions/getUsersResponse'
+          '400':
+            description: 'Bad Request'
+            schema:
+              $ref: '#/definitions/errorResponse'
+        deprecated: false
+      post:
+        tags:
+          - 'Users'
+        summary: 'Get Users'
+        produces:
+          - 'application/json'
+        parameters:
+          - in: body
+            name: body
+            description: ''
+            required: true
+            schema:
+              $ref: '#/definitions/createUserRequest'
         responses:
           '200':
             description: ''
@@ -65,4 +89,15 @@ definitions:
       email:
         type: 'string'
       password:
+        type: 'string'
+  createUserRequest:
+    type: 'object'
+    properties:
+      name:
+        type: 'string'
+      email:
+        type: 'string'
+      password:
+        type: 'string'
+      confirmPassword:
         type: 'string'

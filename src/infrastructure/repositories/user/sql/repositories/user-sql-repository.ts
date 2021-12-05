@@ -1,15 +1,34 @@
-import { FindAllUsersRepository } from '../../../../../application/ports/repositories/user/find-all-users-repository';
-import { User } from '../../../../../domain/models/user/user';
-import db from '../../../../../infrastructure/knex/config/knex.dataBase';
+import { RepositoryError } from '../../../../../application/errors/repository-error';
+import { CreateUserRepository } from '../../../../../application/ports/repositories/user/create-user-repository';
+import { FindUserByEmailRepository } from '../../../../../application/ports/repositories/user/find-user-by-email-repository';
 
-export class UserSqlRepository implements FindAllUsersRepository {
+import { User } from '../../../../../domain/models/user/user';
+import db from '../../../../knex/config/knex.dataBase';
+
+export class UserSqlRepository implements CreateUserRepository, FindUserByEmailRepository {
   private readonly table = 'users';
-  async find(order: 'asc' | 'desc', limit: number, offset: number): Promise<User[]> {
-    const users = await db(this.table)
-      .select('id', 'name', 'email', 'password')
-      .orderBy('id', order)
-      .limit(limit)
-      .offset(offset);
-    return users;
+
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await db<User>(this.table).where({ email }).first();
+    if (!user) return null;
+    return { ...user, id: user.id.toString() };
+  }
+
+  async create(requestModel: any): Promise<User | never | undefined> {
+    try {
+      const user = await db<User>(this.table).insert(requestModel).returning('id');
+      return {
+        id: user[0].toString(),
+        email: requestModel.email,
+        name: requestModel.name,
+        password: requestModel.password,
+      };
+    } catch (error) {
+      if (error instanceof Error) {
+        const repositoryError = new RepositoryError('Could not create User');
+        repositoryError.stack = error.stack;
+        throw repositoryError;
+      }
+    }
   }
 }

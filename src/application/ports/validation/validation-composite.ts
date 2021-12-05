@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export abstract class ValidationComposite<T = unknown> {
+export abstract class ValidationComposite {
   protected validations: ValidationComposite[] = [];
 
-  abstract validate(args: T): Promise<void> | never;
+  abstract validate(args: any): Promise<void> | never;
 
   add(...validations: ValidationComposite[]) {
     validations.forEach(validation => {

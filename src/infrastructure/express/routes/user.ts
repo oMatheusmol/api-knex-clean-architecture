@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
 import { expressRouteAdapter } from '../adapters/express-route-adapter';
-
-import findAllUsersControllerFactory from '../../../main/factories/controllers/user/find-all-users-controller-factory';
-
-const { findAllUsersController } = findAllUsersControllerFactory();
+import { createUserControllerFactory } from '../../main/factories/controllers/create-user-controller-factory';
 
 export const userRoutes = Router();
 
-userRoutes.get('/', expressRouteAdapter(findAllUsersController));
+// Controllers
+const { createUserController } = createUserControllerFactory();
+
+userRoutes.post('/', expressRouteAdapter(createUserController));
